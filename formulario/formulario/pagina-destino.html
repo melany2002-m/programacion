@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos Enviados</title>
+    <style>
+        .data-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="data-container">
+        <h2>Datos Enviados</h2>
+        <div id="mostrarDatos"></div>
+    </div>
+
+    <script>
+        // Recupera los datos de localStorage
+        const data = localStorage.getItem('formData');
+
+        // Verifica si los datos existen
+        if (data) {
+            const parsedData = JSON.parse(data);
+            console.log('Datos recuperados:', parsedData); // Para verificar qué se recupera
+
+            const mostrarDatos = document.getElementById('mostrarDatos');
+
+            // Muestra los datos en la página y convierte a mayúsculas
+            Object.entries(parsedData).forEach(([key, value]) => {
+                const para = document.createElement('p');
+                para.textContent = `${key.toUpperCase()}: ${value.toString().toUpperCase()}`; // Convierte tanto clave como valor a mayúsculas
+                mostrarDatos.appendChild(para);
+            });
+        } else {
+            document.getElementById('mostrarDatos').textContent = 'No hay datos disponibles.';
+            console.log('No se encontraron datos en localStorage.');
+        }
+    </script>
+
+</body>
+
+</html>

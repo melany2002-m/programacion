@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .form-container label {
+            display: inline-block;
+            width: 150px;
+        }
+
+        .form-container input,
+        .form-container select,
+        .form-container textarea {
+            width: 200px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input[type="checkbox"],
+        .form-group input[type="radio"] {
+            width: auto;
+        }
+
+        .form-group label {
+            margin-left: 5px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Formulario</h1>
+
+    <!-- Asignar el ID correcto al formulario -->
+    <form id="miFormulario">
+        <div class="form-container">
+            <div class="form-group">
+                <label for="nombres">Nombres:</label>
+                <input type="text" id="nombres" name="nombres">
+            </div>
+
+            <div class="form-group">
+                <label for="edad">Edad:</label>
+                <input type="number" id="edad" name="edad">
+            </div>
+
+            <div class="form-group">
+                <label for="contraseña">Contraseña:</label>
+                <input type="password" id="contraseña" name="contraseña">
+            </div>
+
+            <div class="form-group">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha">
+            </div>
+
+            <div class="form-group">
+                <label for="correo">Correo electrónico:</label>
+                <input type="email" id="correo" name="correo">
+            </div>
+
+            <div class="form-group">
+                <label for="solo-lectura">Solo lectura:</label>
+                <input type="text" id="solo-lectura" name="solo-lectura" readonly>
+            </div>
+
+            <div class="section-title">Oculto</div>
+            <div class="form-group">
+                <label for="mytextarea">Textarea:</label>
+                <textarea id="mytextarea" name="textarea" rows="5" cols="20"></textarea>
+                <input type="hidden" name="textarea" value="">
+            </div>
+
+            <div class="section-title">Lista de Colores</div>
+            <div class="form-group">
+                <select id="color" name="color" required>
+                    <option value="rosado">Rosado</option>
+                    <option value="morado">Morado</option>
+                    <option value="celeste">Celeste</option>
+                    <option value="negro">Negro</option>
+                </select>
+            </div>
+
+            <div class="section-title">Radio</div>
+            <div class="form-group">
+                <input type="radio" name="language" id="html" value="HTML">
+                <label for="html">HTML</label><br>
+                <input type="radio" name="language" id="css" value="CSS">
+                <label for="css">CSS</label><br>
+                <input type="radio" name="language" id="javascript" value="JAVASCRIPT">
+                <label for="javascript">JAVASCRIPT</label>
+            </div>
+
+            <div class="section-title">Check</div>
+            <div class="form-group">
+                <input type="checkbox" id="html" name="language" value="html">
+                <label for="html">HTML</label><br>
+                <input type="checkbox" id="css" name="language" value="css">
+                <label for="css">CSS</label><br>
+                <input type="checkbox" id="javascript" name="language" value="javascript">
+                <label for="javascript">JAVASCRIPT</label>
+            </div>
+
+            <div class="form-group">
+                <label for="fileInput">Subir Archivo:</label>
+                <input type="file" id="subir_archivo" name="subir_archivo">
+            </div>
+
+            <div class="form-group">
+                <label for="colorInput">Color:</label>
+                <input type="color" id="color" name="color" value="#E0FFFF">
+            </div>
+
+            <div class="form-group">
+                <label for="placeholderInput">Placeholder:</label>
+                <input type="number" id="placeholder" name="placeholder" placeholder="Ingrese solo números">
+            </div>
+
+            <div class="form-group">
+                <label for="maxLengthInput">Maxlength:</label>
+                <input type="number" id="maxLength" name="maxLength" min="0" max="5">
+            </div>
+
+            <div class="form-group">
+                <label for="maxInput">Max:</label>
+                <input type="number" id="max" name="max" min="0" max="5">
+            </div>
+            <div class="form-group">
+                <input type="reset" value="Resetear">
+                <input type="submit" value="Enviar">
+            </div>
+        </div>
+    </form>
+
+    <script>
+        // Captura el formulario y guarda los datos en localStorage
+        document.getElementById('miFormulario').addEventListener('submit', function (event) {
+            event.preventDefault(); // Evita el envío real del formulario
+
+            const formData = new FormData(this);
+            const formEntries = Object.fromEntries(formData.entries());
+
+            // Guarda los datos en localStorage
+            localStorage.setItem('formData', JSON.stringify(formEntries));
+            console.log('Datos guardados:', formEntries); // Para verificar qué se guarda
+
+            // Redirige a la página de destino
+            window.location.href = 'pagina-destino.html';
+        });
+    </script>
+
+</body>
+
+</html>
